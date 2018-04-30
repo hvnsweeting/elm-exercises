@@ -1,6 +1,8 @@
 Elm-exercises
 =============
 
+[![Build Status](https://travis-ci.org/hvnsweeting/elm-exercises.svg?branch=master)](https://travis-ci.org/hvnsweeting/elm-exercises)
+
 A collection of Elm exercises, using CLI to run instead of making website.
 
 Exercises:
