@@ -3,6 +3,16 @@ Elm-exercises
 
 A collection of Elm exercises, using CLI to run instead of making website.
 
+Exercises:
+- Sum in Elm
+- FizzBuzz in Elm
+- Factorial in Elm
+- Fibonacci in Elm
+- WordsCount in Elm
+- RunLengthEncode in Elm # TODO
+
+Code tested on Elm 0.18
+
 ## Install
 Install [elm]:
 
