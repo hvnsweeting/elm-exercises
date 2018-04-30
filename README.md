@@ -10,7 +10,7 @@ Exercises:
 - FizzBuzz in Elm
 - Factorial in Elm
 - Fibonacci in Elm
-- WordsCount in Elm
+- Word Frequency Count in Elm
 - RunLengthEncode in Elm # TODO
 
 Code tested on Elm 0.18.0
