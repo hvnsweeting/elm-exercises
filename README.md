@@ -38,6 +38,9 @@ $ run-elm FizzBuzz.elm
 
 $ run-elm Sum.elm 1 2 3.5
 6.5
+
+$ run-elm Factorial.elm
+120
 ```
 
 ## New project
