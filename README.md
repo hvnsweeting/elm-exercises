@@ -6,14 +6,14 @@ Elm-exercises
 A collection of Elm exercises, using CLI to run instead of making website.
 
 Exercises:
-- Sum in Elm
 - FizzBuzz in Elm
 - Factorial in Elm
 - Fibonacci in Elm
+- RunLengthEncode in Elm
+- Sum in Elm
 - Word Frequency Count in Elm
 - [ProjectEuler.net Problem 1 - Multiples of 3 and 5](https://projecteuler.net/problem=1) in Elm
 - [ProjectEuler.net Problem 16 - Power digit sum](https://projecteuler.net/problem=16) in Elm # TODO
-- RunLengthEncode in Elm # TODO
 
 Code tested on Elm 0.18.0
 
