@@ -13,29 +13,26 @@ Exercises:
 - WordsCount in Elm
 - RunLengthEncode in Elm # TODO
 
-Code tested on Elm 0.18
+Code tested on Elm 0.18.0
+
+```
+├─┬ elm@0.18.0
+├─┬ elm-format@0.7.0-exp
+└─┬ run-elm@2.2.0
+```
 
 ## Install
-Install [elm]:
+Install [elm], [rum-elm](https://github.com/jfairbank/run-elm) and `elm-format`:
 
 ```
-npm install --global elm
+npm install --global elm elm-format@0.7.0-exp run-elm@2.2.0
 ```
 
-Install [rum-elm](https://github.com/jfairbank/run-elm) using:
-
-```
-npm install --global run-elm
-```
-
-Install project dependencies:
+To install packages in `elm-package.json`, run:
 
 ```
 elm-package
 ```
-
-To install packages in `elm-package.json`.
-
 
 ## Run
 
