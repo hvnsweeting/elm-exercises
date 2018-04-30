@@ -11,6 +11,7 @@ Exercises:
 - Factorial in Elm
 - Fibonacci in Elm
 - Word Frequency Count in Elm
+- [ProjectEuler.net Problem 1](https://projecteuler.net/problem=1) in Elm
 - RunLengthEncode in Elm # TODO
 
 Code tested on Elm 0.18.0
