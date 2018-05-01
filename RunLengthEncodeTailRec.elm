@@ -59,8 +59,7 @@ recursiveRunLengthEncode input countingChar count output =
         Just headNow ->
             if headNow == countingChar then
                 recursiveRunLengthEncode (List.drop 1 input) headNow (count + 1) output
+            else if count > 1 then
+                recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar ++ toString count)
             else
-                if count > 1 then
-                    recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar ++ toString count)
-                else
-                    recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar)
+                recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar)
