@@ -17,7 +17,17 @@ output =
         input =
             "aabbbbccaaaac"
     in
-    runLengthEncode input
+    let
+        output1 =
+            runLengthEncode input
+
+        output2 =
+            runLengthEncode2 (String.toList input) [] |> String.fromList
+    in
+    if output1 == output2 then
+        output1
+    else
+        output1 ++ "!=" ++ output2
 
 
 runLengthEncode : String -> String
@@ -34,7 +44,7 @@ runLengthEncode s =
             ""
 
         Just countingChar ->
-            recursiveRunLengthEncode (List.drop 1 input) countingChar 0 ""
+            recursiveRunLengthEncode (List.drop 1 input) countingChar 1 ""
 
 
 recursiveRunLengthEncode : List Char -> Char -> Int -> String -> String
@@ -57,3 +67,52 @@ recursiveRunLengthEncode input countingChar count output =
                 recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar ++ toString count)
             else
                 recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar)
+
+
+takeWhile list condition =
+    let
+        hd =
+            List.head list
+    in
+    case hd of
+        Nothing ->
+            []
+
+        Just hd ->
+            let
+                tl =
+                    List.tail list
+            in
+            case tl of
+                Nothing ->
+                    []
+
+                Just tl ->
+                    if condition hd then
+                        [ hd ] ++ takeWhile tl condition
+                    else
+                        []
+
+
+runLengthEncode2 : List Char -> List Char -> List Char
+runLengthEncode2 text prev =
+    if List.isEmpty text then
+        prev
+    else
+        let
+            initChar =
+                List.head text
+        in
+        case initChar of
+            Nothing ->
+                []
+
+            Just initChar ->
+                let
+                    count =
+                        takeWhile text (\x -> x == initChar) |> List.length
+                in
+                if count == 1 then
+                    runLengthEncode2 (List.drop count text) (prev ++ [ initChar ])
+                else
+                    runLengthEncode2 (List.drop count text) (prev ++ [ initChar ] ++ String.toList (toString count))
