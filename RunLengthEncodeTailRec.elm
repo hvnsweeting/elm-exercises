@@ -26,7 +26,7 @@ runLengthEncode s =
         input =
             String.toList s
 
-        currentChar =
+        countingChar =
             List.head input
 
         count =
@@ -35,26 +35,26 @@ runLengthEncode s =
         output =
             ""
     in
-    case currentChar of
+    case countingChar of
         Nothing ->
             ""
 
-        Just currentChar ->
-            recursiveRunLengthEncode (List.drop 1 input) currentChar 1 output
+        Just countingChar ->
+            recursiveRunLengthEncode (List.drop 1 input) countingChar 1 output
 
 
 recursiveRunLengthEncode : List Char -> Char -> Int -> String -> String
-recursiveRunLengthEncode input currentChar count output =
+recursiveRunLengthEncode input countingChar count output =
     let
         headNow =
             List.head input
     in
     case headNow of
         Nothing ->
-            output ++ String.fromChar currentChar ++ toString count
+            output ++ String.fromChar countingChar ++ toString count
 
         Just headNow ->
-            if headNow == currentChar then
+            if headNow == countingChar then
                 recursiveRunLengthEncode (List.drop 1 input) headNow (count + 1) output
             else
-                recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar currentChar ++ toString count)
+                recursiveRunLengthEncode (List.drop 1 input) headNow 1 (output ++ String.fromChar countingChar ++ toString count)
