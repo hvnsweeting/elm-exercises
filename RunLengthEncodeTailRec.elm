@@ -28,19 +28,13 @@ runLengthEncode s =
 
         countingChar =
             List.head input
-
-        count =
-            0
-
-        output =
-            ""
     in
     case countingChar of
         Nothing ->
             ""
 
         Just countingChar ->
-            recursiveRunLengthEncode (List.drop 1 input) countingChar 1 output
+            recursiveRunLengthEncode (List.drop 1 input) countingChar 0 ""
 
 
 recursiveRunLengthEncode : List Char -> Char -> Int -> String -> String
