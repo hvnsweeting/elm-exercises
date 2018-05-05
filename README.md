@@ -14,6 +14,7 @@ Exercises:
 - Word Frequency Count in Elm
 - [ProjectEuler.net Problem 1 - Multiples of 3 and 5](https://projecteuler.net/problem=1) in Elm
 - [ProjectEuler.net Problem 16 - Power digit sum](https://projecteuler.net/problem=16) in Elm # TODO
+- [99 Problems in Elm](https://wiki.haskell.org/99_questions) - on going
 
 Code tested on Elm 0.18.0
 
