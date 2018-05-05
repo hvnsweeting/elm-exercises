@@ -7,19 +7,22 @@ module P02ButLast exposing (..)
 -}
 
 
-
 output : String
 output =
     "Hello World!" |> String.toList |> butLast |> toString
+
 
 butLast : List a -> Maybe a
 butLast list =
     case list of
         [] ->
             Nothing
+
         [ _ ] ->
             Nothing
+
         [ a, _ ] ->
             Just a
+
         a :: _ :: rest ->
             butLast rest

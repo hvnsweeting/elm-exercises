@@ -1,5 +1,5 @@
 all: lint
 lint:
-	elm-format --validate *.elm
+	elm-format --validate *.elm 99problems/
 format:
-	elm-format --yes *.elm
+	elm-format --yes *.elm 99problems/
