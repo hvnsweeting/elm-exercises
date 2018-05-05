@@ -32,7 +32,7 @@ install:
   - cd ..
 
 script:
-  - elm-format --validate *.elm
+  - make lint
   - elm-make --output=/dev/null --yes
   # TODO have proper test and run npm test
   - ./rundemo.sh
