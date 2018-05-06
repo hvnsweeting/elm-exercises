@@ -39,7 +39,7 @@ packHelp list last currentList result =
             List.head list
 
         remainList =
-            List.tail list
+            List.drop 1 list
     in
     case current of
         Nothing ->
@@ -47,16 +47,6 @@ packHelp list last currentList result =
 
         Just current ->
             if current == last then
-                case remainList of
-                    Nothing ->
-                        result ++ [ current :: currentList ]
-
-                    Just remainList ->
-                        packHelp remainList current (current :: currentList) result
+                packHelp remainList current (current :: currentList) result
             else
-                case remainList of
-                    Nothing ->
-                        result ++ [ currentList ] ++ [ [ current ] ]
-
-                    Just remainList ->
-                        packHelp remainList current [ current ] (result ++ [ currentList ])
+                packHelp remainList current [ current ] (result ++ [ currentList ])
