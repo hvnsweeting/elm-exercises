@@ -35,18 +35,18 @@ pack list =
 packHelp : List a -> a -> List a -> List (List a) -> List (List a)
 packHelp list last currentList result =
     let
-        current =
+        head =
             List.head list
 
-        remainList =
+        tail =
             List.drop 1 list
     in
-    case current of
+    case head of
         Nothing ->
             result ++ [ currentList ]
 
-        Just current ->
-            if current == last then
-                packHelp remainList current (current :: currentList) result
+        Just head ->
+            if head == last then
+                packHelp tail head (head :: currentList) result
             else
-                packHelp remainList current [ current ] (result ++ [ currentList ])
+                packHelp tail head [ head ] (result ++ [ currentList ])
