@@ -9,7 +9,7 @@ This is so-called groupWhile equal
 
 output : String
 output =
-    [ 1, 1, 1, 2, 2, 3, 3, 3, 4 ] |> pack |> toString
+    [ 1, 1, 1, 2, 2, 3, 3, 3, 1 ] |> pack |> toString
 
 
 
