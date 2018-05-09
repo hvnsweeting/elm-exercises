@@ -60,6 +60,26 @@ $ run-elm Sum.elm 1 2 3.5
 $ run-elm Factorial.elm
 120
 ```
+
+## Lessons learned
+- When writing recursive function, if the first *iteration* seems complex,
+  complicated (e.g get head of list then initialize all needed
+  variables to pass on next function call),
+  maybe just process it separately and do all the recursion in
+  a help function is a good idea.
+
+- **ALWAYS** uses `()` to group values you pass to function. This looks quite
+  correct
+  ```
+  runLengthEncodeHelp (List.drop 1 list) head ( 1, head ) result ++ [ currentCount ]
+  ```
+  But Elm would think you call `runLengthEncodeHelp` with `result` then append
+  `[ currentCount ]` when you might wanted to pass `result ++ [ currentCount ]`
+  as argument. So always use `()`
+  ```
+  runLengthEncodeHelp (List.drop 1 list) head ( 1, head ) ( result ++ [ currentCount ] )
+  ```
+
 ## New project
 
 Create new directory, run `elm-make` to create `elm-package.json`.
