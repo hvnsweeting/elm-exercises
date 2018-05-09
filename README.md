@@ -34,7 +34,13 @@ npm install --global elm elm-format@0.7.0-exp run-elm@2.2.0
 To install packages in `elm-package.json`, run:
 
 ```
-elm-package
+elm-package install
+```
+
+Or just
+
+```
+make install
 ```
 
 ## Run
@@ -54,7 +60,6 @@ $ run-elm Sum.elm 1 2 3.5
 $ run-elm Factorial.elm
 120
 ```
-
 ## New project
 
 Create new directory, run `elm-make` to create `elm-package.json`.
