@@ -79,6 +79,13 @@ $ run-elm Factorial.elm
   ```
   runLengthEncodeHelp (List.drop 1 list) head ( 1, head ) ( result ++ [ currentCount ] )
   ```
+- The great type system/static typing of Elm/Haskell can help to avoid lot
+  of errors such as wrong type, wrong input ... BUT it would not always prevent
+  you to forget to pass enough arguments to a function call. Because of partial
+  application, calling a function with not enough parameter will create new
+  function. If the result passed to a generic function like `toString`, you
+  would see output `<function>`, which is correct, but not what you would
+  expect.
 
 ## New project
 
