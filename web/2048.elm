@@ -18,7 +18,7 @@ model =
     [[0,2,2,4]
     ,[1,1,1,1]
     ,[2,2,2,8]
-    ,[0,0,0,0]]
+    ,[1,2,4,8]]
 
 -- UPDATE
 
@@ -33,7 +33,7 @@ nextState row =
         case head of
             Nothing -> row
             Just head ->
-                nextStateHelp (List.drop 1 row) head [0]
+                nextStateHelp (List.drop 1 row) head []
 
 nextStateHelp : List Int -> Int -> List Int -> List Int
 nextStateHelp list last result =
@@ -63,32 +63,23 @@ rotateLeftPadZero list =
                 else
                     head :: (rotateLeftPadZero tail)
 
+transpose : List (List Int) -> List (List Int)
+transpose listOfList =
+    List.map (\row -> List.map (\n -> [n]) row) listOfList
+    |> List.foldr (List.map2 (++)) [[], [], [], []]
+
+
 update : Msg -> Model -> Model
 update msg model =
     case msg of
         Up ->
-            model
-            -- what happen?
-            -- [0,2,2,4] -> [4,4,0,0] : rotate
-        -- [1,1,1,1] -> [2, 2, 0,0]
-        -- [2,2,2,8] -> [4,2,8,0]
-        {-
-        only two case merge, or stay (move is merge with 0)
-        process from up to down, one by one
-        if one at row 0, won't change
-        if one at row 1 -> move to 0 or merge, or stay
-        if one at row 2 -> move to 0 if not thing at 1 , else merge w 1
-        TODO how to handle case move 3 to 0?
-        process once per turn.
-
-        -}
-
+            model |> transpose |> List.map (\row -> nextState(row)) |> transpose
         Down ->
-            model
+            model |> transpose |> List.map (\row -> nextState(List.reverse(row)) |> List.reverse) |> transpose
         Left ->
             model |> List.map (\row -> nextState(row))
         Right ->
-            model
+            model |> List.map (\row -> nextState(List.reverse(row)) |> List.reverse)
 
 -- VIEW
 
