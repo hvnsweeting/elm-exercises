@@ -86,6 +86,13 @@ $ run-elm Factorial.elm
   function. If the result passed to a generic function like `toString`, you
   would see output `<function>`, which is correct, but not what you would
   expect.
+- After awhile playing with Elm on command line, better to start writing beginner webapp,
+  which is what Elm for, and also simple. Follow the homepage tutorial to create
+  a non-beginner app - which load a random cat picture to understand why
+  Elm is great for webapp.
+- After a long time no writing Elm, get back got a lot of trouble, even this
+  what you learn when you start writing Elm, DO WRITE FUNCTION SIGNATURE (TYPE)
+  BEFORE WRITING THE FUNCTION, IT HELPS A LOT.
 
 ## New project
 
