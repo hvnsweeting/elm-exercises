@@ -5,6 +5,9 @@ import Html.Attributes exposing (..)
 import Time exposing (Time, second)
 
 
+-- READY
+
+
 main =
     Html.program
         { init = init
