@@ -53,14 +53,17 @@ maybePad n =
 view : Model -> Html Msg
 view model =
     let
+        msInDay =
+            floor model % 86400000 |> toFloat
+
         hours =
-            (Time.inHours model |> floor) % 86400 % 24
+            Time.inHours msInDay |> floor
 
         minutes =
-            floor (Time.inMinutes model) % 86400 % 60
+            Time.inMinutes msInDay |> floor |> (\x -> x % 60)
 
         seconds =
-            (Time.inSeconds model |> floor) % 86400 % 60
+            Time.inSeconds msInDay |> floor |> (\x -> x % 60)
     in
     div []
         [ div
