@@ -8533,30 +8533,23 @@ var _user$project$Main$maybePad = function (n) {
 		_elm_lang$core$Basics$toString(n)) : _elm_lang$core$Basics$toString(n);
 };
 var _user$project$Main$view = function (model) {
-	var seconds = A2(
-		_elm_lang$core$Basics_ops['%'],
+	var msInDay = _elm_lang$core$Basics$toFloat(
 		A2(
 			_elm_lang$core$Basics_ops['%'],
-			_elm_lang$core$Basics$floor(
-				_elm_lang$core$Time$inSeconds(model)),
-			86400),
-		60);
-	var minutes = A2(
-		_elm_lang$core$Basics_ops['%'],
-		A2(
-			_elm_lang$core$Basics_ops['%'],
-			_elm_lang$core$Basics$floor(
-				_elm_lang$core$Time$inMinutes(model)),
-			86400),
-		60);
-	var hours = A2(
-		_elm_lang$core$Basics_ops['%'],
-		A2(
-			_elm_lang$core$Basics_ops['%'],
-			_elm_lang$core$Basics$floor(
-				_elm_lang$core$Time$inHours(model)),
-			86400),
-		24);
+			_elm_lang$core$Basics$floor(model),
+			86400000));
+	var hours = _elm_lang$core$Basics$floor(
+		_elm_lang$core$Time$inHours(msInDay));
+	var minutes = function (x) {
+		return A2(_elm_lang$core$Basics_ops['%'], x, 60);
+	}(
+		_elm_lang$core$Basics$floor(
+			_elm_lang$core$Time$inMinutes(msInDay)));
+	var seconds = function (x) {
+		return A2(_elm_lang$core$Basics_ops['%'], x, 60);
+	}(
+		_elm_lang$core$Basics$floor(
+			_elm_lang$core$Time$inSeconds(msInDay)));
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
