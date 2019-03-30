@@ -1,5 +1,5 @@
 module Main exposing (..)
-
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -11,7 +11,7 @@ import Json.Decode exposing (..)
 
 
 main =
-    Html.program
+    Browser.element
         { init = init
         , update = update
         , view = view
@@ -27,6 +27,7 @@ type alias Model =
     { page : Int
     , jobs : List Job
     , url : String
+    , background : String
     }
 
 
@@ -34,11 +35,12 @@ type Msg
     = NextPage
     | PrevPage
     | NewPage (Result Http.Error (List Job))
+    | ChangeBackground String
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( Model 1 [] "https://jobs.pymi.vn", fetchJobsCmd 1 )
+init : () -> (Model, Cmd Msg)
+init _ =
+    ( Model 1 [] "https://jobs.pymi.vn" "white", fetchJobsCmd 1 )
 
 
 
@@ -59,6 +61,8 @@ update msg model =
 
         NewPage (Err _) ->
             ( model, Cmd.none )
+        ChangeBackground background ->
+            ( {model| background = background}, Cmd.none )
 
 
 fetchJobsCmd : Int -> Cmd Msg
@@ -71,14 +75,12 @@ fetchJobsCmd page =
             "&api=True"
 
         url =
-            baseUrl ++ toString page ++ tail
+            baseUrl ++ String.fromInt page ++ tail
 
         -- url =
         --     "http://127.0.0.1:5000/" ++ toString page
-        request =
-            Http.get url decodeJobs
     in
-    Http.send NewPage request
+    Http.get {url=url, expect = Http.expectJson NewPage decodeJobs}
 
 
 jobDecoder : Decoder Job
@@ -104,12 +106,12 @@ view model =
          --            [ text "Previous" ]
          --         , button [] [ text (toString model.page) ]
          --         , button [ onClick NextPage ] [ text "Next" ]
-         [ div [ style [ ( "text-align", "center" ), ( "padding-top", "50px" ) ] ]
+         [ div [ style "text-align" "center", style "padding-top" "50px" ]
             [ h1 []
                 [ img [ src "https://jobs.pymi.vn/assets/python.png", width 40, height 40 ] []
                 , i
                     [ class "fa fa-suitcase fa-x5"
-                    , style [ ( "color", "steelblue" ) ]
+                    , style "color" "steelblue"
                     ]
                     []
                 , img [ src "https://jobs.pymi.vn/assets/vn.png", width 40, height 40 ] []
@@ -132,27 +134,27 @@ view model =
                                 , br [] []
                                 , span []
                                     [ text (job.company ++ " ")
-                                    , i [ class "fa fa-bank", style [ ( "color", "SaddleBrown" ) ] ] []
+                                    , i [ class "fa fa-bank", style "color" "SaddleBrown" ] []
                                     , text (" " ++ job.province)
                                     ]
                                 , br [] []
                                 , span []
-                                    [ i [ class "fa fa-calendar", style [ ( "color", "LightSalmon" ) ] ] []
+                                    [ i [ class "fa fa-calendar", style "color" "LightSalmon"  ] []
                                     , text (" " ++ job.postDate ++ " ")
-                                    , i [ class "fa fa-money", style [ ( "color", "DarkCyan" ) ] ] []
+                                    , i [ class "fa fa-money", style "color" "DarkCyan" ] []
                                     , text (" " ++ job.wage)
                                     ]
                                 ]
                         )
                )
-            ++ [ div [ style [ ( "text-align", "center" ) ] ]
+            ++ [ div [ style "text-align" "center" ]
                     [ button [ onClick PrevPage ]
                         [ text "Previous" ]
-                    , button [] [ text (toString model.page) ]
+                    , button [] [ text (String.fromInt model.page) ]
                     , button [ onClick NextPage ] [ text "Next" ]
-                    , p [ class "text-block", style [ ( "font-size", "14px" ) ] ]
+                    , p [ class "text-block", style "font-size" "14px" ]
                         [ img [ src "https://jobs.pymi.vn/assets/python-powered-w-70x28.png" ] []
-                        , i [ class "fa fa-heart", style [ ( "color", "red" ) ] ] []
+                        , i [ class "fa fa-heart", style "color" "red" ] []
                         , span [] [ text " by " ]
                         , a [ href "http://www.facebook.com/pyfml", target "_blank" ] [ text "PyFML" ]
                         , span [] [ text " team" ]

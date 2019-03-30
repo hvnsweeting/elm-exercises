@@ -1,4 +1,4 @@
 all: build
 
 build:
-	elm-make pyjobs.elm --output elm.js && xdg-open index.html
+	elm make pyjobs.elm && xdg-open index.html
